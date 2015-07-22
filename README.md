@@ -22,8 +22,7 @@ Define:
 Yes/No answers
 See http://sms.sendfront.com/ for an example
 
-
-- ES6 (optional)
+- ES6/Angular2 (optional)
 - Angular fron-end
-- Convert the back end to AJAX
+- Convert the back end to JSON to be consumed by AJAX (continue using Mongo, but you need to add to the schemas)
 - Bootstrap or Materialize or Foundation
