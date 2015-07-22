@@ -27,10 +27,11 @@ var ideaSchema = new mongoose.Schema({
 var Idea = mongoose.model('Idea', ideaSchema);
 
 router.get('/', function(req, res) {
-  res.render('index', { });
+  // res.render('index');
+  res.send('respond with resource');
 });
 
-router.post('/hypothesis', function(req, res) {
+router.post('/h', function(req, res) {
 
   var titleCode = parameterize(req.body.name || req.body.group).substring(0,42);
   var idea = new Idea({
@@ -38,7 +39,6 @@ router.post('/hypothesis', function(req, res) {
     name: req.body.name,
     group: req.body.group,
     problem: req.body.problem,
-    why: req.body.why,
     solution: req.body.solution,
     cost: req.body.cost,
     code: ((new Date()).getTime()).toString() + "-" + titleCode
@@ -49,10 +49,11 @@ router.post('/hypothesis', function(req, res) {
       req.flash('danger', 'There was a problem');
       return console.error(err);
     }
-    req.flash('success', 'Hypothesis saved');
-    res.redirect('/hypothesis/' + idea.code);
-  });
 
+    res.send('/hypothesis/' + idea.code).json(req.body);
+
+  });
+  // res.json(req.body);
 });
 
 router.get('/hypothesis/:code', function(req, res) {
